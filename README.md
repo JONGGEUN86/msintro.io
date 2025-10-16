@@ -12,12 +12,14 @@
 ## 🚀 실행 방법
 
 1. 저장소 클론:
+
 ```bash
 git clone https://github.com/JONGGEUN86/msintro.io.git
 cd msintro.io
 ```
 
 2. 브라우저에서 `index.html` 파일을 열거나, 로컬 서버 실행:
+
 ```bash
 # Python 사용
 python -m http.server 8000
@@ -75,4 +77,3 @@ MIT License
 ---
 
 ⭐ 이 프로젝트가 마음에 드셨다면 Star를 눌러주세요!
-
