@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>핑퐁 게임</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Page-local styles for the game page */
+      .game-page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+        gap: 16px;
+      }
+      .game-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .game-title {
+        color: var(--lightest-slate);
+        font-size: clamp(20px, 3vw, 28px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .back-link {
+        color: var(--green);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+      .controls button {
+        background: var(--light-navy);
+        color: var(--lightest-slate);
+        border: 1px solid var(--lightest-navy);
+        padding: 10px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: transform 0.15s ease, border-color 0.2s ease;
+      }
+      .controls button:hover {
+        transform: translateY(-1px);
+        border-color: var(--green);
+      }
+      .scoreboard {
+        color: var(--lightest-slate);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+      .hint {
+        color: var(--slate);
+        font-size: 14px;
+      }
+      .game-container {
+        display: grid;
+        place-items: center;
+        flex: 1;
+        padding: 12px 0 24px 0;
+      }
+      .game-frame {
+        width: min(92vw, 900px);
+        aspect-ratio: 16 / 10;
+        background: radial-gradient(1000px 600px at 50% 0%, rgba(100,255,218,0.05), transparent 70%);
+        border: 1px solid var(--lightest-navy);
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 10px 30px -20px var(--navy-shadow);
+      }
+      canvas#gameCanvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, var(--light-navy), var(--navy));
+      }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(10, 25, 47, 0.45);
+        color: var(--lightest-slate);
+        font-weight: 800;
+        font-size: clamp(18px, 2.2vw, 28px);
+        text-align: center;
+        backdrop-filter: blur(2px);
+      }
+      .overlay.show { display: flex; }
+    </style>
+  </head>
+  <body>
+    <div class="game-page">
+      <header class="game-header">
+        <h1 class="game-title">핑퐁 게임</h1>
+        <a class="back-link" href="index.html" aria-label="포트폴리오로 돌아가기">← 포트폴리오로 돌아가기</a>
+      </header>
+
+      <div class="controls" aria-label="게임 컨트롤">
+        <button id="playPauseBtn" type="button">시작</button>
+        <button id="resetBtn" type="button">리셋</button>
+        <button id="modeBtn" type="button" aria-pressed="true">모드: 1인</button>
+        <span class="scoreboard" id="scoreText" aria-live="polite">0 : 0</span>
+        <span class="hint">조작: 1P ↑/↓, 2P W/S • 스페이스: 일시정지 • M: 모드 • R: 리셋</span>
+      </div>
+
+      <div class="game-container">
+        <div class="game-frame">
+          <canvas id="gameCanvas" aria-label="핑퐁 게임 화면" role="img"></canvas>
+          <div id="overlay" class="overlay">일시정지</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="pingpong.js"></script>
+  </body>
+</html>
